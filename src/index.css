@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* One token set. Dark mode only swaps the values. */
+:root {
+  --canvas: 243 246 240;
+  --surface: 255 255 255;
+  --sunken: 232 238 228;
+  --ink: 25 34 29;
+  --muted: 90 104 95;
+  --line: 212 222 208;
+  --brand: 15 77 58;
+  --brand-ink: 255 255 255;
+  --accent: 242 179 61;
+}
+.dark {
+  --canvas: 14 21 17;
+  --surface: 22 31 26;
+  --sunken: 30 42 35;
+  --ink: 234 240 232;
+  --muted: 157 173 162;
+  --line: 44 58 50;
+  --brand: 110 214 160;
+  --brand-ink: 8 28 20;
+  --accent: 244 188 80;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-canvas font-sans text-ink antialiased; overflow-x: hidden; }
+  h1, h2, h3, h4 { @apply font-display tracking-tight; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-brand; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .section { @apply py-14 sm:py-20; }
+  .h-display { @apply font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl; }
+  .h-section { @apply text-2xl font-bold sm:text-3xl; }
+
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition duration-150 active:scale-[.98] disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply bg-brand text-brand-ink shadow-sm hover:opacity-90; }
+  .btn-accent { @apply bg-accent text-[#1b1b12] hover:brightness-95; }
+  .btn-outline { @apply border border-line bg-surface text-ink hover:border-brand hover:text-brand; }
+  .btn-ghost { @apply text-ink hover:bg-sunken; }
+  .btn-danger { @apply bg-red-600 text-white hover:bg-red-700; }
+  .btn-sm { @apply min-h-[36px] rounded-lg px-3 py-1.5 text-xs; }
+
+  .card { @apply rounded-2xl border border-line bg-surface; }
+  .label { @apply mb-1.5 block text-sm font-semibold; }
+  .input { @apply min-h-[44px] w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/70 transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30; }
+  .input-error { @apply border-red-500 focus:border-red-500 focus:ring-red-500/30; }
+  .error-text { @apply mt-1.5 text-xs font-medium text-red-600 dark:text-red-400; }
+  .chip { @apply inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-line bg-surface px-3.5 text-sm font-medium transition hover:border-brand; }
+  .chip-on { @apply border-brand bg-brand text-brand-ink hover:border-brand; }
+  .badge { @apply inline-flex items-center gap-1 rounded-full bg-brand/10 px-2.5 py-0.5 text-xs font-semibold text-brand; }
+}
+
+/* Hero loop ring */
+.loop-node { @apply absolute flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-2xl border border-line bg-surface text-xs font-bold shadow-sm sm:h-24 sm:w-24 sm:text-sm; }
